@@ -25,4 +25,4 @@ We will try to keep the layout and file formats of this repository stable, but t
 
 This data is published in the hope it will be useful, but without any warranty. You are using it at your own risk.
 
-Data is available under MIT license, see LICENSE file.
+Data is made available under the [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license.
