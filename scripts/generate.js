@@ -14,6 +14,8 @@ const apiFetch = async (path) => {
 	} : {})).json();
 };
 
+const csvEscape = (s) => `"${s.replace(/"/g, "\"\"")}"`;
+
 (async () => {
 	// retrieve asset info for all assets available
 	const assetsInfos = {};
@@ -42,4 +44,30 @@ const apiFetch = async (path) => {
 		// write to file
 		fs.writeFileSync(`${process.env.OUT}/${asset}.csv`, csv);
 	};
+
+	// retrieve metrics info and write to file
+	fs.writeFileSync(`${process.env.OUT}/metrics.csv`,
+		`id,name,category,subcategory,type,unit,interval,interval_rt,description\n${
+			(await apiFetch("/metric_info")).metricsInfo.map(metricInfo =>
+				`${
+					metricInfo.id
+				},${
+					csvEscape(metricInfo.name)
+				},${
+					csvEscape(metricInfo.category)
+				},${
+					csvEscape(metricInfo.subcategory)
+				},${
+					csvEscape(metricInfo.metricType)
+				},${
+					csvEscape(metricInfo.unit)
+				},${
+					csvEscape(metricInfo.interval)
+				},${
+					csvEscape(metricInfo.interval_rt || '')
+				},${
+					csvEscape(metricInfo.description)
+				}\n`
+	).join('')}`);
+
 })();
