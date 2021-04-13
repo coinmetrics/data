@@ -1,5 +1,6 @@
 id,name,category,subcategory,type,unit,interval,interval_rt,description
 AdrActCnt,"Addresses, active, count","Addresses","Active","Sum","Addresses","1 day","1 block","The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active."
+AssetEODCompletionTime,"Last fully calculated EOD metrics time","Availability","NA","Sum","Seconds","1 day","","The last time (expressing in seconds since epoch) all end-of-day metrics for that asset were fully calculated for that time."
 BlkCnt,"Block, count","Network Usage","Blocks","Sum","Blocks","1 day","","The sum count of blocks created that interval that were included in the main (base) chain."
 BlkSizeByte,"Block, size, bytes","Network Usage","Blocks","Sum","Bytes","1 day","1 block","The sum of the size (in bytes) of all blocks created that interval."
 BlkSizeMeanByte,"Block, size, mean, bytes","Network Usage","Blocks","Mean","Bytes","1 day","","The mean size (in bytes) of all blocks created that day."
