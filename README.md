@@ -21,6 +21,21 @@ The archives are updated daily.
 
 We will try to keep the layout and file formats of this repository stable, but there is no guarantee. In particular, sets of available assets and metrics can be changed at any time.
 
+## Environment variables
+
+- `OUT` - **required** - the output folder
+- `THROTTLE` - when set, throttles the requests to honor the rate limit
+- `VERBOSE` - when set, emits additional messages to STDOUT
+- `ASSETS` - generate files for the comma-separated list of assets (default: all assets)
+
+Example of a full local debug invocation to generate only BTC and ETH:
+
+```shell
+yarn --cwd scripts
+mkdir test
+OUT=./test THROTTLE=1 VERBOSE=1 ASSETS=btc,eth node ./scripts/generate.js
+```
+
 ## License
 
 This data is published in the hope it will be useful, but without any warranty. You are using it at your own risk.

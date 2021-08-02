@@ -1,73 +1,109 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
+const path = require('path');
 
-const apiRootUrl = "https://api.coinmetrics.io/v3";
-const communityApiRootUrl = "https://community-api.coinmetrics.io/v3";
+const API_ROOT = 'https://community-api.coinmetrics.io/v4';
+const MIN_FETCH_INTERVAL = 600; // rate limit interval in ms (used only for debugging)
+const PAGE_SIZE = 10000;
 
-const apiKey = null;
-
-const apiFetch = async (path) => {
-	return await (await fetch((apiKey ? apiRootUrl : communityApiRootUrl) + path, apiKey ? {
-		headers: {
-			Authorization: apiKey
-		}
-	} : {})).json();
+const emitInfo = msg => {
+	console.log(`[INF ${timestamp()}] ${msg}`);
 };
 
-const csvEscape = (s) => `"${s.replace(/"/g, "\"\"")}"`;
+const emitVerbose = msg => {
+	if (process.env.VERBOSE) {
+		emitInfo(msg);
+	}
+};
+
+const emitErrorAndDie = msg => {
+	console.error(`[ERR ${timestamp()}] ${msg} (status: ${lastStatus}`);
+	process.exit(1);
+};
+
+let lastStatus = null;
+const apiFetch = async path => fetch(API_ROOT + path)
+	.then(res => {
+		lastStatus = res.status;
+		return res;
+	})
+	.then(res => res.json())
+	.then(res => res.data);
+
+const fsWrite = (filename, content) => {
+	filename = path.resolve(process.env.OUT, `${filename}.csv`);
+	fs.writeFileSync(filename, content);
+	emitVerbose(`Written ~${content.length} bytes to ${filename}`);
+};
+
+const metricIdsFromAssetInfo = assetInfo => assetInfo.metrics
+	.filter(metric => metric.frequencies.find(freq => freq.frequency === '1d'))
+	.map(metric => metric.metric);
+
+const dataPointToCsvCols = (dataPoint, metricIds) => metricIds.map(metricId => dataPoint[metricId] ?? '').join(',');
+
+const timestamp = () => new Date().toISOString();
+
+const wait = interval => new Promise(res => setTimeout(res, interval));
+
+const shouldOmitAsset = assetInfo => {
+	return assetInfo.metrics == null || assetInfo.metrics.every(metric => metric.metric.startsWith('ReferenceRate'));
+};
 
 (async () => {
-	// retrieve asset info for all assets available
-	const assetsInfos = {};
-	(await apiFetch("/asset_info")).assetsInfo.forEach(assetInfo => {
-		assetsInfos[assetInfo.id] = assetInfo;
-	});
+	const assetIndex = {};
+	const assetIds = [];
 
-	// list of asset ids
-	const assets = Object.keys(assetsInfos).sort();
+	// build an asset info index and a list of asset IDs
+	const assetInfo = await apiFetch('/catalog/assets');
+	if (assetInfo == null) {
+		emitErrorAndDie('Failed to fetch asset info');
+		process.exit(1);
+	}
+	for (const info of assetInfo) {
+		if (shouldOmitAsset(info)) {
+			emitVerbose(`Omitting ${info.asset}`);
+			continue;
+		}
+		assetIndex[info.asset] = info;
+		assetIds.push(info.asset);
+	}
+	assetIds.sort();
 
 	// retrieve metrics for every asset
-	for(let i = 0; i < assets.length; ++i) {
-		const asset = assets[i];
-		const assetInfo = assetsInfos[asset];
+
+	const totalAssets = assetIds.length;
+	let fetchedAssets = 0;
+	let lastFetchTime = 0;
+
+	for (const assetId of (process.env.ASSETS?.split(',') ?? assetIds)) {
+		const timeSinceLastFetch = Date.now() - lastFetchTime;
+		if (process.env.THROTTLE && timeSinceLastFetch < MIN_FETCH_INTERVAL) {
+			emitVerbose(`Pausing for ${MIN_FETCH_INTERVAL - timeSinceLastFetch}ms`);
+			await wait(MIN_FETCH_INTERVAL - timeSinceLastFetch);
+		}
+		fetchedAssets++;
+		const info = assetIndex[assetId];
+		const metricIds = metricIdsFromAssetInfo(info);
 
 		// fetch data
-		console.log(`Fetching ${asset} data...`);
-		const metricdata = (await apiFetch(`/assets/${asset}/metricdata?metrics=${encodeURIComponent(assetInfo.metrics.join(","))}`)).metricData;
+		emitInfo(`Fetching ${assetId} data with ${metricIds.length} metrics... (${fetchedAssets}/${totalAssets})`);
+		lastFetchTime = Date.now();
+		const seriesData = await apiFetch(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
 
-		// compose CSV
-		const csv = `time,${metricdata.metrics.join(',')}\n${
-			metricdata.series.map((series) =>
-				`${series.time.substr(0, 10)}${series.values.map(value => `,${(value === null || value === undefined) ? '' : value}`).join('')}\n`
-			).join('')}`;
+		if (seriesData == null) {
+			emitErrorAndDie(`Failed to fetch data for ${assetId}`);
+		}
+
+		// build CSV
+		let csv = `time,${metricIds.join(',')}\n`;
+		for (let dataPoint of seriesData) {
+			csv += `${dataPoint.time.split('T')[0]},${dataPointToCsvCols(dataPoint, metricIds)}\n`;
+		}
 
 		// write to file
-		fs.writeFileSync(`${process.env.OUT}/${asset}.csv`, csv);
-	};
+		fsWrite(assetId, csv);
+	}
 
-	// retrieve metrics info and write to file
-	fs.writeFileSync(`${process.env.OUT}/metrics.csv`,
-		`id,name,category,subcategory,type,unit,interval,interval_rt,description\n${
-			(await apiFetch("/metric_info")).metricsInfo.map(metricInfo =>
-				`${
-					metricInfo.id
-				},${
-					csvEscape(metricInfo.name)
-				},${
-					csvEscape(metricInfo.category)
-				},${
-					csvEscape(metricInfo.subcategory)
-				},${
-					csvEscape(metricInfo.metricType)
-				},${
-					csvEscape(metricInfo.unit)
-				},${
-					csvEscape(metricInfo.interval)
-				},${
-					csvEscape(metricInfo.interval_rt || '')
-				},${
-					csvEscape(metricInfo.description)
-				}\n`
-	).join('')}`);
-
+	emitInfo('Finished');
 })();
