@@ -1,6 +1,6 @@
 # Free Coin Metrics data archives
 
-These data archives are produced using free Community tier of [Coin Metrics API](https://docs.coinmetrics.io/api/v3/).
+These data archives are produced using free Community tier of [Coin Metrics API](https://docs.coinmetrics.io/api).
 
 Scripts for data generation are in [scripts](scripts) directory.
 
@@ -8,12 +8,11 @@ Scripts for data generation are in [scripts](scripts) directory.
 
 ### CSV archives
 
-This data is similar to Coin Metrics [Community Data Downloads](https://coinmetrics.io/data-downloads/).
+This data is similar to Coin Metrics [Community Data Downloads](https://coinmetrics.io/community-network-data/).
 
 Files:
 
 * `csv/<coin>.csv` - CSV file per coin with all available free metrics
-* [csv/metrics.csv](csv/metrics.csv) - CSV file with metrics descriptions
 
 The archives are updated daily.
 
