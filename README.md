@@ -13,6 +13,8 @@ This data is similar to Coin Metrics [Community Data Downloads](https://coinmetr
 Files:
 
 * `csv/<coin>.csv` - CSV file per coin with all available free metrics
+* `csv/all.zip` - All CSV files in a zip archive
+* `csv/all.tar.gz` - All CSV files in a tar archive
 
 The archives are updated daily.
 
