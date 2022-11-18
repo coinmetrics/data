@@ -89,6 +89,10 @@ const shouldOmitAsset = assetInfo => {
 		// fetch data
 		emitInfo(`Fetching ${assetId} data with ${metricIds.length} metrics... (${fetchedAssets}/${totalAssets})`);
 		lastFetchTime = Date.now();
+		if (metricIds.length === 0) {
+		    emitInfo(`Skipping asset: ${assetId} because there is no available metrics`)
+		    continue
+		}
 		const seriesData = await apiFetch(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
 
 		if (seriesData == null) {
