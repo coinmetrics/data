@@ -1,0 +1,2 @@
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2022-11-19,0.986674906771811,0.0000592187706538641,0.000815785230958328,0.955162128752575,0.986674906771811,0.994265772,bitfinex-mim-usdt-spot
