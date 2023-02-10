@@ -6,6 +6,10 @@ const API_ROOT = 'https://community-api.coinmetrics.io/v4';
 const MIN_FETCH_INTERVAL = 600; // rate limit interval in ms (used only for debugging)
 const PAGE_SIZE = 10000;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const emitInfo = msg => {
 	console.log(`[INF ${timestamp()}] ${msg}`);
 };
@@ -88,13 +92,11 @@ const shouldOmitAsset = assetInfo => {
 
 		// fetch data
 		emitInfo(`Fetching ${assetId} data with ${metricIds.length} metrics... (${fetchedAssets}/${totalAssets})`);
+		lastFetchTime = Date.now();
 		if (metricIds.length === 0) {
 		    emitInfo(`Skipping asset: ${assetId} because there is no available metrics`)
 		    continue
 		}
-
-		}
-		lastFetchTime = Date.now();
 		const seriesData = await apiFetch(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
 
 		if (seriesData == null) {
@@ -109,6 +111,7 @@ const shouldOmitAsset = assetInfo => {
 
 		// write to file
 		fsWrite(assetId, csv);
+		await sleep(750) // sleeps 2 seconds after each loop
 	}
 
 	emitInfo('Finished');
