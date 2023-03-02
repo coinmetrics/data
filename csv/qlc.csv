@@ -1,0 +1,3 @@
+time,CapMrktEstUSD,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2023-03-01,48517925.10278856,,,,,,,
+2023-03-02,,0.0808632085046476,0.00000342486028007051,0.000048662707182705,0.0757918685363402,0.0808632085046476,0.080868465,binance-qlc-btc-spot

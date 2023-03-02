@@ -1,0 +1,3 @@
+time,CapMrktEstUSD,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2023-03-01,18442390.111355791918036,,,,,,,
+2023-03-02,,0.636340180476908,0.0000269513942005282,0.000382943447876641,0.596432075785428,0.636340180476908,0.63746374,binance-pros-usdt-spot
