@@ -10,6 +10,24 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function fetchDataWithRetry(url, maxRetries = 5) {
+  let response;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      response = await fetch(API_ROOT + url);
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        return jsonResponse.data;
+      }
+    } catch (error) {
+      if (attempt === maxRetries - 1) {
+        throw new Error(`Failed to fetch data after ${maxRetries} attempts. Reason: ${error.message}`);
+      }
+      console.warn(`Fetch attempt ${attempt + 1} failed. Retrying...`);
+    }
+  }
+}
+
 const emitInfo = msg => {
 	console.log(`[INF ${timestamp()}] ${msg}`);
 };
@@ -97,7 +115,7 @@ const shouldOmitAsset = assetInfo => {
 		    emitInfo(`Skipping asset: ${assetId} because there is no available metrics`)
 		    continue
 		}
-		const seriesData = await apiFetch(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
+		const seriesData = await fetchDataWithRetry(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
 
 		if (seriesData == null) {
 			emitErrorAndDie(`Failed to fetch data for ${assetId}`);
