@@ -6,6 +6,7 @@ update-csvs:
   image: node:alpine
   before_script:
   - apk add --no-cache git zip
+  - git config --global http.postBuffer 1048576000
   script:
   - rm -r ./csv
   - mkdir ./csv
