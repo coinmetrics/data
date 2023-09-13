@@ -4,6 +4,7 @@ stages:
 update-csvs:
   stage: deploy
   image: node:alpine
+  timeout: 4 hours
   before_script:
   - apk add --no-cache git zip
   script:
