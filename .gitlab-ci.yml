@@ -20,7 +20,6 @@ update-csvs:
   - git push "${GIT_REMOTE}" HEAD:refs/heads/master
   tags:
   - linux
-  - shared
   only:
   - schedules
   - web
