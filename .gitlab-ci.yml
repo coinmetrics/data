@@ -20,6 +20,7 @@ update-csvs:
   - git push "${GIT_REMOTE}" HEAD:refs/heads/master
   tags:
   - linux
+  - kube-any-small
   only:
   - schedules
   - web
