@@ -10,21 +10,20 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetchDataWithRetry(url, maxRetries = 5) {
+async function fetchDataWithRetry(url) {
   let response;
-  for (let attempt = 0; attempt < maxRetries; attempt++) {
+  for (let attempt = 1; 1; attempt++) {
     try {
       response = await fetch(API_ROOT + url);
       if (response.ok) {
         const jsonResponse = await response.json();
         return jsonResponse.data;
       }
+	  console.warn(`Fetch attempt ${attempt} failed due to HTTP: ${response.status} ${response.statusText}. See cf-ray: ${response.headers.get('cf-ray')} Retrying...`);
     } catch (error) {
-      if (attempt === maxRetries - 1) {
-        throw new Error(`Failed to fetch data after ${maxRetries} attempts. Reason: ${error.message}`);
-      }
-      console.warn(`Fetch attempt ${attempt + 1} failed. Retrying...`);
+        console.warn(`Fetch attempt ${attempt}: ${error}`);
     }
+	await sleep(1000);
   }
 }
 
@@ -129,7 +128,7 @@ const shouldOmitAsset = assetInfo => {
 
 		// write to file
 		fsWrite(assetId, csv);
-		await sleep(750) // sleeps 2 seconds after each loop
+		await sleep(750)
 	}
 
 	emitInfo('Finished');
