@@ -19,12 +19,11 @@ async function fetchDataWithRetry(url) {
         const jsonResponse = await response.json();
         return jsonResponse.data;
       }
-
 	  console.warn(`Fetch attempt ${attempt} failed due to HTTP: ${response.status} ${response.statusText}. See cf-ray: ${response.headers.get('cf-ray')} Retrying...`);
-	  await sleep(1000)
     } catch (error) {
         console.warn(`Fetch attempt ${attempt}: ${error}`);
     }
+	await sleep(1000);
   }
 }
 
