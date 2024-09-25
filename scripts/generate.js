@@ -23,7 +23,7 @@ async function fetchDataWithRetry(url) {
 	  console.warn(`Fetch attempt ${attempt} failed due to HTTP: ${response.status} ${response.statusText}. See cf-ray: ${response.headers.get('cf-ray')} Retrying...`);
 	  await sleep(1000)
     } catch (error) {
-        throw new Error(`Unexpected problem: ${error.message}`);
+        console.warn(`Fetch attempt ${attempt}: ${error}`);
     }
   }
 }
