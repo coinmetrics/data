@@ -1,2 +1,3 @@
 time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
 2025-03-29,2038.5,0.0241788908119141,1.07514299647668,1884.16006555097,2038.5,2038.5,coinbase-lseth-usd-spot
+2025-03-30,1950.85006779661,0.0236474760179423,1.06978028427201,1804.15096140418,1950.85006779661,1950.84,coinbase-lseth-usd-spot
