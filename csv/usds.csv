@@ -1,2 +1,3 @@
 time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
 2025-05-15,1.018,0.00000982884299570879,0.00039107826568811,0.910360331522711,1.018,1.018,kraken-usds-usd-spot
+2025-05-16,1.00001,0.00000964178393151037,0.000393598401109324,0.893999965178094,1.00001,1.00001,kraken-usds-usd-spot
