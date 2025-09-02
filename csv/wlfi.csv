@@ -1,8 +1,8 @@
-time,principal_market_price_usd,principal_market_usd
-2025-08-26,0.7051353238105467,lbank-wlfi-usdt-spot
-2025-08-27,0.701153894140585,lbank-wlfi-usdt-spot
-2025-08-28,0.4192037206742835,lbank-wlfi-usdt-spot
-2025-08-29,0.4893097616825641,lbank-wlfi-usdt-spot
-2025-08-30,0.5965050636018212,lbank-wlfi-usdt-spot
-2025-08-31,0.5293064764387132,lbank-wlfi-usdt-spot
-2025-09-01,0.8016200747658444,lbank-wlfi-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-08-27,,,,,,0.701153894140585,lbank-wlfi-usdt-spot
+2025-08-28,,,,,,0.4192037206742835,lbank-wlfi-usdt-spot
+2025-08-29,,,,,,0.4893097616825641,lbank-wlfi-usdt-spot
+2025-08-30,,,,,,0.5965050636018212,lbank-wlfi-usdt-spot
+2025-08-31,,,,,,0.5293064764387132,lbank-wlfi-usdt-spot
+2025-09-01,,,,,,0.8016200747658444,lbank-wlfi-usdt-spot
+2025-09-02,0.232935104003291,0.00000213716979453732,0.000054163629806772,0.198922551901991,0.232935104003291,0.2337146249035228,null
