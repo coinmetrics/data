@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.16465485094272975,mexc-vsn-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.16465485094272975,mexc-vsn-usdt-spot
+2025-09-18,0.163636152313224,0.00000140368913372537,0.0000356114279272516,0.138372932949879,0.163636152313224,0.16364031504444823,kucoin-vsn-usdt-spot

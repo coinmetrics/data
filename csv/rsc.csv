@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.6664,coinbase-rsc-usd-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.6664,coinbase-rsc-usd-spot
+2025-09-18,0.61821577420624,0.00000530312374303356,0.000134539624498714,0.522771579895457,0.61821577420624,0.6235,coinbase-rsc-usd-spot

@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.06273936791593539,kucoin-ptb-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.06273936791593539,kucoin-ptb-usdt-spot
+2025-09-18,0.061970678794967,0.000000531591382493356,0.0000134864107369474,0.0524032401186049,0.061970678794967,0.06169598923002522,kucoin-ptb-usdt-spot

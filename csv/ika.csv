@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.046103716347969,gate.io-ika-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.046103716347969,gate.io-ika-usdt-spot
+2025-09-18,0.0417068155781357,0.000000357765707649103,0.0000090764738478633,0.0352678446294656,0.0417068155781357,0.041716073808549,gate.io-ika-usdt-spot

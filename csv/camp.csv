@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.04986561519031211,bybit-camp-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.04986561519031211,bybit-camp-usdt-spot
+2025-09-18,0.0491088383817675,0.000000421261083396859,0.0000106873440489839,0.0415270947439506,0.0491088383817675,0.04935989968696425,huobi-camp-usdt-spot

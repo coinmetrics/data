@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.15264574848437742,kucoin-aio-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.15264574848437742,kucoin-aio-usdt-spot
+2025-09-18,0.152125432854179,0.00000130494890060686,0.0000331063998475032,0.128639313640238,0.152125432854179,0.1516464508464832,kucoin-aio-usdt-spot

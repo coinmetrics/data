@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.16042061786594983,gate.io-esports-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.16042061786594983,gate.io-esports-usdt-spot
+2025-09-18,0.160000534986071,0.0000013725024035049,0.0000348202242562611,0.135298606002381,0.160000534986071,0.1597339078767392,mexc-esports-usdt-spot

@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.15241772891771024,kucoin-aria-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.15241772891771024,kucoin-aria-usdt-spot
+2025-09-18,0.158823832032712,0.00000136240851455736,0.0000345641434830154,0.134303570146518,0.158823832032712,0.15845140959758458,kucoin-aria-usdt-spot

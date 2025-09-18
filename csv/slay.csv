@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.0247,kraken-slay-usd-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.0247,kraken-slay-usd-spot
+2025-09-18,0.0241907935842661,0.000000207511320758937,0.00000526453775679186,0.0204560606645938,0.0241907935842661,0.02443819434401164,mexc-slay-usdt-spot

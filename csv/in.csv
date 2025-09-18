@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.07044690124696702,gate.io-in-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.07044690124696702,gate.io-in-usdt-spot
+2025-09-18,0.0683330941966132,0.000000586168890197416,0.0000148710356765834,0.057783384220784,0.0683330941966132,0.06822807904952359,mexc-in-usdt-spot

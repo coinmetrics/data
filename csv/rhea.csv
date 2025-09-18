@@ -1,2 +1,3 @@
-time,principal_market_price_usd,principal_market_usd
-2025-09-17,0.03235077691061896,gate.io-rhea-usdt-spot
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,principal_market_price_usd,principal_market_usd
+2025-09-17,,,,,,0.03235077691061896,gate.io-rhea-usdt-spot
+2025-09-18,0.0341012545310387,0.000000292524358187036,0.00000742130849933708,0.0288364798366678,0.0341012545310387,0.0341515256444882,gate.io-rhea-usdt-spot
