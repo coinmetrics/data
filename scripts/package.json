@@ -1,0 +1,9 @@
+{
+  "name": "coinmetrics-data-scripts",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

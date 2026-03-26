@@ -1,0 +1,26 @@
+stages:
+- deploy
+
+update-csvs:
+  stage: deploy
+  image: node:alpine
+  timeout: 4 hours
+  before_script:
+  - apk add --no-cache git zip
+  - git config --global http.postBuffer 1048576000
+  script:
+  - rm -r ./csv
+  - mkdir ./csv
+  - yarn --cwd scripts
+  - OUT=./csv node ./scripts/generate.js
+#  - zip -j ./csv/all.zip ./csv/*.csv
+#  - cd ./csv && tar -czf all.tar.gz *.csv && cd ..
+  - git add -A ./csv
+  - git commit --author "${GIT_COMMITTER_NAME} <${GIT_COMMITTER_EMAIL}>" -m "Update CSV $(date +%Y-%m-%d)"
+  - git push "${GIT_REMOTE}" HEAD:refs/heads/master
+  tags:
+  - linux
+  - kube-any-small
+  only:
+  - schedules
+  - web
