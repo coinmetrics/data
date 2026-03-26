@@ -114,7 +114,7 @@ const shouldOmitAsset = assetInfo => {
 		    emitInfo(`Skipping asset: ${assetId} because there is no available metrics`)
 		    continue
 		}
-		const seriesData = await fetchDataWithRetry(`/timeseries/asset-metrics/?assets=${assetId}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
+		const seriesData = await fetchDataWithRetry(`/timeseries/asset-metrics/?assets=${encodeURIComponent(assetId)}&metrics=${encodeURIComponent(metricIds.join(','))}&page_size=${PAGE_SIZE}`);
 
 		if (seriesData == null) {
 			emitErrorAndDie(`Failed to fetch data for ${assetId}`);
