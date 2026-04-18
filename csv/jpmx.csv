@@ -1,2 +1,4 @@
-time,volume_reported_spot_usd_1d
-2026-04-16,790.33147076464
+time,ReferenceRate,ReferenceRateBTC,ReferenceRateETH,ReferenceRateEUR,ReferenceRateUSD,volume_reported_spot_usd_1d
+2026-04-16,,,,,,790.33147076464
+2026-04-17,,,,,,442.2816111634
+2026-04-18,311.00838,0.00403307360952504,0.128395643655445,264.399939461197,311.00838,
