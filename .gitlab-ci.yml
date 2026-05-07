@@ -7,6 +7,7 @@ update-csvs:
   timeout: 4 hours
   before_script:
   - apk add --no-cache git zip
+  - npm install -g yarn
   - git config --global http.postBuffer 536870912
   - git config --global credential.helper store
   - echo "https://oauth2:${COMMUNITYDATA_TOKEN_RW}@gitlab.com" > ~/.git-credentials
